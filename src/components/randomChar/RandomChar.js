@@ -18,6 +18,20 @@ class RandomChar extends Component {
 
     onCharLoaded = (char) => {
         this.setState({char});
+        const {char: {description}} = this.state;
+
+        if (!description) {
+            this.modifyDescription('There is no description yet!');
+        } else if (description.length > 150) {
+            this.modifyDescription(description.slice(0, 150) + '...');
+        }
+    }
+
+    modifyDescription = (newDescription) => {
+        this.setState(state => {
+            state.char.description = newDescription;
+            return state;
+        });
     }
 
     updateChar = () => {
@@ -29,6 +43,11 @@ class RandomChar extends Component {
 
     render() {
         const {char: {name, description, thumbnail, homepage, wiki}} = this.state;
+
+        if (description === '') {
+
+        }
+
         return (
             <div className="randomchar">
                 <div className="randomchar__block">
