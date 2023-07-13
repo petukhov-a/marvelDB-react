@@ -15,12 +15,12 @@ class RandomChar extends Component {
 
     marvelService = new MarvelService();
 
-    componentDidMount = () => {
+    componentDidMount() {
         this.updateChar();
-        this.timerId = setInterval(() => this.updateChar(),  5000);
+        this.timerId = setInterval(() => this.updateChar(),  10000);
     }
 
-    componentWillUnmount = () => {
+    componentWillUnmount() {
         clearInterval(this.timerId)
     }
 
@@ -31,6 +31,12 @@ class RandomChar extends Component {
         });
     }
 
+    onCharLoading = () => {
+        this.setState({
+            loading: true
+        })
+    }
+
     onError = () => {
         this.setState({
             loading: false,
@@ -39,16 +45,12 @@ class RandomChar extends Component {
     }
 
     updateChar = () => {
+        this.onCharLoading();
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
         this.marvelService
             .getCharacter(id)
             .then(this.onCharLoaded)
             .catch(this.onError);
-    }
-
-    onTryBtnClick = () => {
-        this.setState({loading: true});
-        this.updateChar();
     }
 
     render() {
@@ -71,7 +73,7 @@ class RandomChar extends Component {
                         Or choose another one
                     </p>
                     <button className="button button__main">
-                        <div className="inner" onClick={this.onTryBtnClick}>try it</div>
+                        <div className="inner" onClick={this.updateChar}>try it</div>
                     </button>
                     <img src={mjolnir} alt="mjolnir" className="randomchar__decoration"/>
                 </div>
@@ -82,11 +84,15 @@ class RandomChar extends Component {
 
 const View = ({char}) => {
     const {name, description, thumbnail, homepage, wiki} = char;
+    let imgStyle = {'objectFit': 'cover'};
+    if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
+        imgStyle = {'objectFit': 'unset'};
+    }
     const objectFit = thumbnail.includes('image_not_available') ? 'contain' : 'cover'
 
     return (
         <div className="randomchar__block">
-            <img src={thumbnail} alt="Random character" className="randomchar__img" style={{objectFit: objectFit}} />
+            <img src={thumbnail} alt="Random character" className="randomchar__img" style={imgStyle} />
             <div className="randomchar__info">
                 <p className="randomchar__name">{name}</p>
                 <p className="randomchar__descr">
