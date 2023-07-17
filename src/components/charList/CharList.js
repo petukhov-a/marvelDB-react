@@ -1,4 +1,5 @@
-import {Component} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import MarvelService from '../../services/MarvelService';
@@ -13,6 +14,17 @@ class CharList extends Component {
         newItemLoading: false,
         offset: 210,
         charEnded: false
+    }
+
+    setCharRef = elem => {
+        this.charRef = elem;
+    }
+
+    focusChar = () => {
+        if (this.charRef) {
+            this.charRef.focus();
+        }
+        console.dir(this.charRef);
     }
     
     marvelService = new MarvelService();
@@ -57,7 +69,7 @@ class CharList extends Component {
     }
 
     renderItems(arr) {
-        const items =  arr.map((item) => {
+        const items =  arr.map((item, index) => {
             let imgStyle = {'objectFit' : 'cover'};
             if (item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
                 imgStyle = {'objectFit' : 'unset'};
@@ -65,9 +77,14 @@ class CharList extends Component {
             
             return (
                 <li 
+                    tabIndex={index}
                     className="char__item"
                     key={item.id}
-                    onClick={() => this.props.onCharSelected(item.id)}>
+                    ref={this.setCharRef}
+                    onClick={() => {
+                            this.props.onCharSelected(this.charRef, item.id);
+                            this.focusChar();
+                        }}>
                         <img src={item.thumbnail} alt={item.name} style={imgStyle}/>
                         <div className="char__name">{item.name}</div>
                 </li>
@@ -106,6 +123,10 @@ class CharList extends Component {
             </div>
         )
     }
+}
+
+CharList.propTypes = {
+    onCharSelected: PropTypes.func.isRequired
 }
 
 export default CharList;
