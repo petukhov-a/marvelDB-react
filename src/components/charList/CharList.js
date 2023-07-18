@@ -16,15 +16,18 @@ class CharList extends Component {
         charEnded: false
     }
 
+    charRef = []
+
     setCharRef = elem => {
-        this.charRef = elem;
+        this.charRef.push(elem);
     }
 
-    focusChar = () => {
-        if (this.charRef) {
-            this.charRef.focus();
+    onCharFocus = (index) => {
+        if (this.charRef.length > 0) {
+            this.charRef.forEach(item => item.classList.remove('char__item_selected'));
+            this.charRef[index].classList.add('char__item_selected');
+            this.charRef[index].focus();
         }
-        console.dir(this.charRef);
     }
     
     marvelService = new MarvelService();
@@ -77,14 +80,19 @@ class CharList extends Component {
             
             return (
                 <li 
-                    tabIndex={index}
+                    tabIndex={0}
                     className="char__item"
                     key={item.id}
                     ref={this.setCharRef}
                     onClick={() => {
-                            this.props.onCharSelected(this.charRef, item.id);
-                            this.focusChar();
-                        }}>
+                        this.props.onCharSelected(item.id);
+                        this.onCharFocus(index);
+                    }}
+                    onKeyUp={(e) => {
+                        if (e.key === ' ' || e.key === 'Enter') {
+                            this.props.onCharSelected(item.id);
+                        }
+                    }}>
                         <img src={item.thumbnail} alt={item.name} style={imgStyle}/>
                         <div className="char__name">{item.name}</div>
                 </li>
