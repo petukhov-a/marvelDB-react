@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/petukhov-a/marvelDB-react/static/css/main.e4e6ec41.chunk.css",
+    "main.js": "/petukhov-a/marvelDB-react/static/js/main.227185f8.chunk.js",
+    "main.js.map": "/petukhov-a/marvelDB-react/static/js/main.227185f8.chunk.js.map",
+    "runtime-main.js": "/petukhov-a/marvelDB-react/static/js/runtime-main.acbb708c.js",
+    "runtime-main.js.map": "/petukhov-a/marvelDB-react/static/js/runtime-main.acbb708c.js.map",
+    "static/js/2.a8d255f3.chunk.js": "/petukhov-a/marvelDB-react/static/js/2.a8d255f3.chunk.js",
+    "static/js/2.a8d255f3.chunk.js.map": "/petukhov-a/marvelDB-react/static/js/2.a8d255f3.chunk.js.map",
+    "index.html": "/petukhov-a/marvelDB-react/index.html",
+    "static/css/main.e4e6ec41.chunk.css.map": "/petukhov-a/marvelDB-react/static/css/main.e4e6ec41.chunk.css.map",
+    "static/js/2.a8d255f3.chunk.js.LICENSE.txt": "/petukhov-a/marvelDB-react/static/js/2.a8d255f3.chunk.js.LICENSE.txt",
+    "static/media/error.42292aa1.gif": "/petukhov-a/marvelDB-react/static/media/error.42292aa1.gif",
+    "static/media/mjolnir.61f31e18.png": "/petukhov-a/marvelDB-react/static/media/mjolnir.61f31e18.png",
+    "static/media/vision.067d4ae1.png": "/petukhov-a/marvelDB-react/static/media/vision.067d4ae1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.acbb708c.js",
+    "static/js/2.a8d255f3.chunk.js",
+    "static/css/main.e4e6ec41.chunk.css",
+    "static/js/main.227185f8.chunk.js"
+  ]
+}
