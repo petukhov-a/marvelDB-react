@@ -45,7 +45,7 @@ const ComicsList = () => {
             return (
                 <li className="comics__item"
                     key={i}>
-                    <a href="#">
+                    <a href={item.detail}>
                         <img src={item.thumbnail} style={imgStyle} alt="ultimate war" className="comics__item-img"/>
                         <div className="comics__item-name">{item.title}</div>
                         <div className="comics__item-price">{item.price}$</div>
@@ -66,7 +66,6 @@ const ComicsList = () => {
     const errorMessage = error ? <ErrorMessage/> : null;
 
     return (
-
         <div className="comics__list">
             {errorMessage}
             {spinner}
